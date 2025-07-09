@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>JsSuite V1.0</title>
+  <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  color: #e8eaed;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 48px;
+  position: relative;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #6366f1, transparent);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.3; width: 120px; }
+  50% { opacity: 1; width: 200px; }
+}
+
+h1 {
+  font-size: 3.5em;
+  font-weight: 700;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-top: 24px;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 40px rgba(99, 102, 241, 0.3);
+}
+
+h2 {
+  font-size: 2em;
+  font-weight: 500;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-top: 24px;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 40px rgba(99, 102, 241, 0.3);
+}
+/* Sophisticated card effect */
+.card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 32px;
+  margin-bottom: 32px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.5), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 16px 48px rgba(0, 0, 0, 0.5),
+    0 8px 16px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-color: rgba(99, 102, 241, 0.2);
+}
+
+/* Premium form elements */
+.form-group {
+  margin-bottom: 24px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #a5b4fc;
+  font-size: 0.875em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: #e8eaed;
+  font-size: 1em;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  outline: none;
+}
+
+input[type="text"]:focus {
+  border-color: #6366f1;
+  box-shadow: 
+    0 0 0 3px rgba(99, 102, 241, 0.1),
+    0 4px 16px rgba(99, 102, 241, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-1px);
+}
+
+input[type="text"]::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 400;
+}
+
+/* Sophisticated buttons */
+.btn {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 4px 16px rgba(99, 102, 241, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 24px rgba(99, 102, 241, 0.4),
+    0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  box-shadow: 
+    0 4px 16px rgba(239, 68, 68, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-danger:hover {
+  box-shadow: 
+    0 8px 24px rgba(239, 68, 68, 0.4),
+    0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn-toggle {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  box-shadow: 
+    0 4px 16px rgba(245, 158, 11, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-toggle:hover {
+  box-shadow: 
+    0 8px 24px rgba(245, 158, 11, 0.4),
+    0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Elegant status indicator */
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 
+    0 0 16px rgba(16, 185, 129, 0.6),
+    0 0 4px rgba(16, 185, 129, 0.8);
+  animation: pulse-elegant 2s infinite;
+}
+
+@keyframes pulse-elegant {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+.status-text {
+  font-weight: 500;
+  color: #10b981;
+  font-size: 0.9em;
+}
+
+/* Refined keywords list */
+.keywords-list {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 16px;
+  min-height: 80px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.keyword-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 24px;
+  padding: 8px 16px;
+  margin: 4px;
+  font-size: 0.875em;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  color: #a5b4fc;
+}
+
+.keyword-item:hover {
+  background: rgba(99, 102, 241, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
+.keyword-remove {
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  font-size: 11px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.keyword-remove:hover {
+  background: #dc2626;
+  transform: scale(1.1);
+}
+
+/* Premium history section */
+.history-container {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  padding: 24px;
+  max-height: 600px;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.auto-refresh {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875em;
+  color: #a5b4fc;
+  font-weight: 500;
+}
+
+.refresh-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  animation: blink-elegant 2s infinite;
+}
+
+@keyframes blink-elegant {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0.3; }
+}
+
+.history-call {
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 3px solid #6366f1;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.history-call:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateX(4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  border-color: rgba(99, 102, 241, 0.2);
+}
+
+.call-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.call-timestamp {
+  color: #8b5cf6;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+.call-location {
+  color: #94a3b8;
+  font-size: 0.8em;
+  font-weight: 500;
+}
+
+.call-keyword {
+  background: rgba(99, 102, 241, 0.15);
+  color: #a5b4fc;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.8em;
+  font-weight: 600;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.call-code {
+  background: rgba(0, 0, 0, 0.4);
+  color: #fbbf24;
+  padding: 16px;
+  border-radius: 12px;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.9em;
+  margin: 12px 0;
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.call-args {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 16px;
+  border-radius: 12px;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.8em;
+  color: #e8eaed;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Premium scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #5b5bd6, #7c3aed);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+
+  h1 {
+    font-size: 2.5em;
+  }
+
+  .card {
+    padding: 24px;
+    border-radius: 16px;
+  }
+
+  .history-container {
+    max-height: 400px;
+  }
+
+  .history-call {
+    padding: 16px;
+  }
+}
+
+/* Sophisticated loading animation */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(99, 102, 241, 0.2);
+  border-top: 3px solid #6366f1;
+  border-radius: 50%;
+  animation: spin-elegant 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+}
+
+@keyframes spin-elegant {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Subtle animations for premium feel */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-2px); }
+}
+
+.card {
+  animation: float 6s ease-in-out infinite;
+}
+
+.card:nth-child(2) {
+  animation-delay: -2s;
+}
+
+.card:nth-child(3) {
+  animation-delay: -4s;
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>JsSuite</h1>
+      <h2>Like BurpSuite but for JS ;)</h2>
+    </div>
+
+    <!-- URL Section -->
+    <div class="card">
+      <div class="form-group">
+        <label for="url">URL à ouvrir</label>
+        <input type="text" id="url" value="https://example.com" />
+      </div>
+      <button id="openBtn" class="btn">Ouvrir URL</button>
+    </div>
+
+    <!-- Keywords Section -->
+    <div class="card">
+      <h2 style="margin-bottom: 20px; color: #00ff88;">Mots clés</h2>
+      <div class="form-group">
+        <input type="text" id="newKeyword" placeholder="Nouveau mot clé" />
+      </div>
+      <button id="addKeywordBtn" class="btn">Ajouter</button>
+      <div id="keywordList" class="keywords-list"></div>
+    </div>
+
+    <!-- Intercept Mode Section -->
+    <div class="card">
+      <h2 style="margin-bottom: 20px; color: #00ff88;">Mode d'interception</h2>
+      <button id="toggleInterceptBtn" class="btn btn-toggle">Toggle Intercept</button>
+      <div id="interceptStatus" class="status-indicator">
+        <div class="status-dot"></div>
+        <span class="status-text">Intercept: ON</span>
+      </div>
+    </div>
+
+  
+  <script>
+    // Variables DOM
+    const urlInput = document.getElementById('url');
+    const openBtn = document.getElementById('openBtn');
+    const newKeywordInput = document.getElementById('newKeyword');
+    const addKeywordBtn = document.getElementById('addKeywordBtn');
+    const keywordList = document.getElementById('keywordList');
+    const toggleInterceptBtn = document.getElementById('toggleInterceptBtn');
+    const interceptStatus = document.getElementById('interceptStatus');
+    const clearHistoryBtn = document.getElementById('clearHistoryBtn');
+    const historyDiv = document.getElementById('history');
+
+    let isInterceptOn = true;
+    let autoRefreshInterval;
+
+    // Charger historique et l'afficher
+    async function loadHistory() {
+      try {
+        const res = await fetch('/history');
+        const history = await res.json();
+        
+        if (!history.length) {
+          historyDiv.innerHTML = '<div style="text-align: center; color: #888; padding: 40px;">Aucun appel détecté</div>';
+          return;
+        }
+
+        historyDiv.innerHTML = history.map(entry => {
+          return `<div class="history-call">
+            <div class="call-header">
+              <span class="call-timestamp">${entry.timestamp}</span>
+              <span class="call-keyword">${entry.keyword}</span>
+            </div>
+            <div class="call-location">${entry.scriptUrl} (ligne ${entry.lineNumber}, col ${entry.columnNumber})</div>
+            <div class="call-code">${entry.code}</div>
+            <div class="call-args">${JSON.stringify(entry.args, null, 2)}</div>
+          </div>`;
+        }).join('');
+      } catch (error) {
+        console.error('Erreur lors du chargement de l\'historique:', error);
+        historyDiv.innerHTML = '<div style="text-align: center; color: #ff4757; padding: 40px;">Erreur de chargement</div>';
+      }
+    }
+
+    // Charger mots clés et afficher
+    async function loadKeywords() {
+      try {
+        const res = await fetch('/keywords');
+        const kws = await res.json();
+        
+        if (!kws.length) {
+          keywordList.innerHTML = '<div style="text-align: center; color: #888; padding: 20px;">Aucun mot clé défini</div>';
+          return;
+        }
+
+        keywordList.innerHTML = kws.map(kw => {
+          return `<div class="keyword-item">
+            <span>${kw}</span>
+            <button class="keyword-remove" onclick="removeKeyword('${kw}')">×</button>
+          </div>`;
+        }).join('');
+      } catch (error) {
+        console.error('Erreur lors du chargement des mots clés:', error);
+      }
+    }
+
+    // Supprimer mot clé
+    async function removeKeyword(keyword) {
+      try {
+        await fetch('/remove-keyword', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ keyword }),
+        });
+        loadKeywords();
+        loadHistory();
+      } catch (error) {
+        console.error('Erreur lors de la suppression:', error);
+      }
+    }
+
+    // Ajouter mot clé
+    addKeywordBtn.onclick = async () => {
+      const kw = newKeywordInput.value.trim();
+      if (!kw) return;
+      
+      try {
+        await fetch('/add-keyword', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ keyword: kw }),
+        });
+        newKeywordInput.value = '';
+        loadKeywords();
+        loadHistory();
+      } catch (error) {
+        console.error('Erreur lors de l\'ajout:', error);
+      }
+    };
+
+    // Permettre l'ajout avec Entrée
+    newKeywordInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        addKeywordBtn.click();
+      }
+    });
+
+    // Ouvrir URL
+    openBtn.onclick = async () => {
+      const url = urlInput.value.trim();
+      if (!url) return;
+      
+      try {
+        const res = await fetch('/open', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url }),
+        });
+        
+        if (res.ok) {
+          loadHistory();
+          loadKeywords();
+        } else {
+          console.error('Erreur lors de l\'ouverture de la page');
+        }
+      } catch (error) {
+        console.error('Erreur réseau:', error);
+      }
+    };
+
+    // Toggle intercept mode
+    toggleInterceptBtn.onclick = async () => {
+      const newMode = isInterceptOn ? 'off' : 'on';
+      
+      try {
+        const res = await fetch('/intercept', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mode: newMode }),
+        });
+        
+        if (res.ok) {
+          isInterceptOn = !isInterceptOn;
+          updateInterceptStatus();
+        }
+      } catch (error) {
+        console.error('Erreur lors du toggle:', error);
+      }
+    };
+
+    function updateInterceptStatus() {
+      const statusText = interceptStatus.querySelector('.status-text');
+      const statusDot = interceptStatus.querySelector('.status-dot');
+      
+      if (isInterceptOn) {
+        statusText.textContent = 'Intercept: ON';
+        statusDot.style.background = '#00ff88';
+        statusDot.style.boxShadow = '0 0 15px rgba(0, 255, 136, 0.8)';
+      } else {
+        statusText.textContent = 'Intercept: OFF';
+        statusDot.style.background = '#ff4757';
+        statusDot.style.boxShadow = '0 0 15px rgba(255, 71, 87, 0.8)';
+      }
+    }
+
+    // Clear history
+    clearHistoryBtn.onclick = async () => {
+      try {
+        await fetch('/clear-history', { method: 'POST' });
+        loadHistory();
+      } catch (error) {
+        console.error('Erreur lors de la suppression:', error);
+      }
+    };
+
+    // Auto-refresh de l'historique
+    function startAutoRefresh() {
+      autoRefreshInterval = setInterval(() => {
+        loadHistory();
+      }, 2000); // Refresh toutes les 2 secondes
+    }
+
+    function stopAutoRefresh() {
+      if (autoRefreshInterval) {
+        clearInterval(autoRefreshInterval);
+      }
+    }
+
+    // Gestion de la visibilité de la page
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        stopAutoRefresh();
+      } else {
+        startAutoRefresh();
+      }
+    });
+
+    // Chargement initial
+    loadHistory();
+    loadKeywords();
+    updateInterceptStatus();
+    startAutoRefresh();
+
+    // Nettoyage lors de la fermeture
+    window.addEventListener('beforeunload', () => {
+      stopAutoRefresh();
+    });
+  </script>
+</body>
+</html>

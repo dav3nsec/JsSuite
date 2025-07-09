@@ -1,0 +1,29 @@
+{
+  "name": "breakpoint-setter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "chrome-remote-interface": "^0.33.3",
+    "express": "^4.18.2",
+    "playwright": "^1.37.0",
+    "prettier": "^3.1.0",
+    "@babel/core": "^7.23.0",
+    "@babel/plugin-syntax-jsx": "^7.23.0",
+    "@babel/plugin-transform-arrow-functions": "^7.23.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [
+    "javascript",
+    "debugger",
+    "unminify",
+    "playwright",
+    "cdp"
+  ],
+  "author": "",
+  "license": "MIT"
+}
