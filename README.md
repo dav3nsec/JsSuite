@@ -89,11 +89,11 @@ This tool is intended for educational and ethical research purposes only. Always
 
 ## 🧠 Credits
 
-Built with ❤️ by Dav3n.  
+Built with ❤️ by [Dav3n](https://www.linkedin.com/in/bmamoud/).  
 Inspired by the power of Burp Suite and the need for a modern JavaScript debugger for the web.
 
 ---
 
 ## 📄 License
 
-MIT License. See [LICENSE](./LICENSE) for details.
+GPL V3 License. See [LICENSE](./LICENSE) for details.
