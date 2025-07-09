@@ -66,14 +66,12 @@ You can:
 
 ---
 
-## 📷 Usage Video
+## 📷 Usage Demo
 
 > ![JsSuite Demo Screenshot](./docs/jssuitepoc.png)
->
-> <video controls width="600">
-  <source src="https://yourdomain.com/path/to/video.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+
+Wants to see a live usage video of JsSuite : [Click here](https://www.youtube.com/watch?v=qTeu2fJOh88)
+
 
 ---
 
