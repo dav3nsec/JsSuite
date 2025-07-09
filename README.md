@@ -69,6 +69,11 @@ You can:
 ## 📷 Usage Video
 
 > ![JsSuite Demo Screenshot](./docs/demo.png)
+>
+> <video controls width="600">
+  <source src="https://yourdomain.com/path/to/video.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ---
 
