@@ -10,7 +10,7 @@
 - 🔍 Breakpoint Injection based on custom keywords or patterns
 - 🧠 Works even on minified or obfuscated heavy code (Tested on 45k lines code case)
 - 🔁 Toggle interception on/off in real time
-- 🧩 Add/Remove intercept keywords live through the UI or console
+- 🧩 Add/Remove intercept keywords live through the web UI
 - 📜 Extracts and logs the enclosing function or stack trace
 - 💡 Ideal for bug bounty, malware analysis, client-side security research, and dynamic analysis of JS-heavy applications
 
