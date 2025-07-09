@@ -68,7 +68,7 @@ You can:
 
 ## 📷 Usage Video
 
-> ![JsSuite Demo Screenshot](./docs/demo.png)
+> ![JsSuite Demo Screenshot](./docs/jssuitepoc.png)
 >
 > <video controls width="600">
   <source src="https://yourdomain.com/path/to/video.mp4" type="video/mp4">
