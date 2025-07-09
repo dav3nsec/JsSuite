@@ -72,15 +72,6 @@ You can:
 
 ---
 
-## 📁 Folder Structure
-
-JsSuite/
-├── public/index.html      # Web UI Interface 
-├── index.js              # Default configuration  
-├── package.json
-
----
-
 ## ❗ Disclaimer
 
 This tool is intended for educational and ethical research purposes only. Always get proper authorization before intercepting or analyzing third-party websites or code.
