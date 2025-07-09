@@ -8,7 +8,7 @@
 
 - ✅ Live JavaScript Call Interception (via Playwright + Chrome DevTools Protocol)
 - 🔍 Breakpoint Injection based on custom keywords or patterns
-- 🧠 Works even on minified or obfuscated code
+- 🧠 Works even on minified or obfuscated heavy code (Tested on 45k lines code case)
 - 🔁 Toggle interception on/off in real time
 - 🧩 Add/Remove intercept keywords live through the UI or console
 - 📜 Extracts and logs the enclosing function or stack trace
