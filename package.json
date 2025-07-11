@@ -3,16 +3,17 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "postinstall": "npx playwright install"
   },
   "dependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/plugin-syntax-jsx": "^7.23.0",
+    "@babel/plugin-transform-arrow-functions": "^7.23.0",
     "chrome-remote-interface": "^0.33.3",
     "express": "^4.18.2",
     "playwright": "^1.37.0",
-    "prettier": "^3.1.0",
-    "@babel/core": "^7.23.0",
-    "@babel/plugin-syntax-jsx": "^7.23.0",
-    "@babel/plugin-transform-arrow-functions": "^7.23.0"
+    "prettier": "^3.1.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
