@@ -27,6 +27,7 @@
 git clone https://github.com/dav3nsec/JsSuite.git
 cd JsSuite
 npm install
+npx playwright install
 npm start
 ```
 ---
